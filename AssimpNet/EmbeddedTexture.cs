@@ -271,7 +271,7 @@ namespace Assimp
         /// Reads the unmanaged data from the native value.
         /// </summary>
         /// <param name="nativeValue">Input native value</param>
-        void IMarshalable<EmbeddedTexture, AiTexture>.FromNative(in AiTexture nativeValue)
+        void IMarshalable<EmbeddedTexture, AiTexture>.FromNative(in AiTexture nativeValue, IntPtr nativePointer)
         {
             m_filename = AiString.GetString(nativeValue.Filename); //Avoid struct copy;
             m_isCompressed = nativeValue.Height == 0;

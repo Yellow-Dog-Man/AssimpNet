@@ -744,7 +744,7 @@ namespace Assimp
         /// Reads the unmanaged data from the native value.
         /// </summary>
         /// <param name="nativeValue">Input native value</param>
-        void IMarshalable<Mesh, AiMesh>.FromNative(in AiMesh nativeValue)
+        void IMarshalable<Mesh, AiMesh>.FromNative(in AiMesh nativeValue, IntPtr nativePointer)
         {
             ClearBuffers();
 

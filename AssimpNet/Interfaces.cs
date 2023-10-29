@@ -49,7 +49,7 @@ namespace Assimp
         /// Reads the unmanaged data from the native value.
         /// </summary>
         /// <param name="nativeValue">Input native value</param>
-        void FromNative(in Native nativeValue);
+        void FromNative(in Native nativeValue, IntPtr nativePointer);
     }
 
     /// <summary>

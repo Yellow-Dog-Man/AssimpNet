@@ -115,7 +115,7 @@ namespace Assimp
         /// Reads the unmanaged data from the native value.
         /// </summary>
         /// <param name="nativeValue">Input native value</param>
-        void IMarshalable<Metadata, AiMetadata>.FromNative(in AiMetadata nativeValue)
+        void IMarshalable<Metadata, AiMetadata>.FromNative(in AiMetadata nativeValue, IntPtr nativePointer)
         {
             Clear();
 

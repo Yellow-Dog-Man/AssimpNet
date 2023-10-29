@@ -31,6 +31,8 @@ namespace Assimp
     /// </summary>
     public sealed class Node : IMarshalable<Node, AiNode>
     {
+        private IntPtr m_nativePtr;
+
         private String m_name;
         private Matrix4x4 m_transform;
         private Node m_parent;
@@ -351,8 +353,10 @@ namespace Assimp
         /// Reads the unmanaged data from the native value.
         /// </summary>
         /// <param name="nativeValue">Input native value</param>
-        void IMarshalable<Node, AiNode>.FromNative(in AiNode nativeValue)
+        void IMarshalable<Node, AiNode>.FromNative(in AiNode nativeValue, IntPtr nativePtr)
         {
+            m_nativePtr = nativePtr;
+
             m_name = AiString.GetString(nativeValue.Name); //Avoid struct copy
             m_transform = nativeValue.Transformation;
             m_parent = null;
@@ -400,5 +404,14 @@ namespace Assimp
         }
 
         #endregion
+
+        internal void GetNodeMapping(Dictionary<IntPtr, Node> nodeMapping)
+        {
+            if (m_nativePtr != IntPtr.Zero)
+                nodeMapping.Add(m_nativePtr, this);
+
+            foreach (var child in m_children)
+                child.GetNodeMapping(nodeMapping);
+        }
     }
 }

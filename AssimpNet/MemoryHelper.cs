@@ -198,7 +198,7 @@ namespace Assimp
                 }
 
                 //Populate managed data
-                managedValue.FromNative(nativeValue);
+                managedValue.FromNative(nativeValue, currPos);
 
                 managedArray[i] = managedValue;
             }
@@ -356,7 +356,7 @@ namespace Assimp
             }
 
             //Populate managed value
-            managedValue.FromNative(nativeValue);
+            managedValue.FromNative(nativeValue, ptr);
 
             return managedValue;
         }

@@ -255,7 +255,7 @@ namespace Assimp
         /// Reads the unmanaged data from the native value.
         /// </summary>
         /// <param name="nativeValue">Input native value</param>
-        void IMarshalable<NodeAnimationChannel, AiNodeAnim>.FromNative(in AiNodeAnim nativeValue)
+        void IMarshalable<NodeAnimationChannel, AiNodeAnim>.FromNative(in AiNodeAnim nativeValue, IntPtr nativePointer)
         {
             m_nodeName = nativeValue.NodeName.GetString();
             m_preState = nativeValue.Prestate;

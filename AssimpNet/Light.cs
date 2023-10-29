@@ -326,7 +326,7 @@ namespace Assimp
         /// Reads the unmanaged data from the native value.
         /// </summary>
         /// <param name="nativeValue">Input native value</param>
-        void IMarshalable<Light, AiLight>.FromNative(in AiLight nativeValue)
+        void IMarshalable<Light, AiLight>.FromNative(in AiLight nativeValue, IntPtr nativePointer)
         {
             m_name = AiString.GetString(nativeValue.Name); //Avoid struct copy
             m_lightType = nativeValue.Type;

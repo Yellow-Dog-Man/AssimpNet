@@ -788,7 +788,7 @@ namespace Assimp
         /// Reads the unmanaged data from the native value.
         /// </summary>
         /// <param name="nativeValue">Input native value</param>
-        void IMarshalable<MaterialProperty, AiMaterialProperty>.FromNative(in AiMaterialProperty nativeValue)
+        void IMarshalable<MaterialProperty, AiMaterialProperty>.FromNative(in AiMaterialProperty nativeValue, IntPtr nativePointer)
         {
             m_name = AiString.GetString(nativeValue.Key); //Avoid struct copy
             m_type = nativeValue.Type;

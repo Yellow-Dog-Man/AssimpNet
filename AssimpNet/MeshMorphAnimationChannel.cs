@@ -104,7 +104,7 @@ namespace Assimp
         /// Reads the unmanaged data from the native value.
         /// </summary>
         /// <param name="nativeValue">Input native value</param>
-        void IMarshalable<MeshMorphAnimationChannel, AiMeshMorphAnim>.FromNative(in AiMeshMorphAnim nativeValue)
+        void IMarshalable<MeshMorphAnimationChannel, AiMeshMorphAnim>.FromNative(in AiMeshMorphAnim nativeValue, IntPtr nativePointer)
         {
             m_name = AiString.GetString(nativeValue.Name); //Avoid struct copy
             m_meshMorphkeys.Clear();

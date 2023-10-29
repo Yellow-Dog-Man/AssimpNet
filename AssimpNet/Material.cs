@@ -1603,7 +1603,7 @@ namespace Assimp
         /// Reads the unmanaged data from the native value.
         /// </summary>
         /// <param name="nativeValue">Input native value</param>
-        void IMarshalable<Material, AiMaterial>.FromNative(in AiMaterial nativeValue)
+        void IMarshalable<Material, AiMaterial>.FromNative(in AiMaterial nativeValue, IntPtr nativePointer)
         {
             Clear();
 

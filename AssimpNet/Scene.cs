@@ -497,7 +497,7 @@ namespace Assimp
         /// Reads the unmanaged data from the native value.
         /// </summary>
         /// <param name="nativeValue">Input native value</param>
-        void IMarshalable<Scene, AiScene>.FromNative(in AiScene nativeValue)
+        void IMarshalable<Scene, AiScene>.FromNative(in AiScene nativeValue, IntPtr nativePointer)
         {
             Clear();
 
@@ -540,6 +540,17 @@ namespace Assimp
                 // Make sure we never have a null instance
                 if(m_metadata == null)
                     m_metadata = new Metadata();
+            }
+
+            // Link up nodes with bones
+            var nodeMapping = new Dictionary<IntPtr, Node>();
+            m_rootNode.GetNodeMapping(nodeMapping);
+
+            foreach (var mesh in m_meshes)
+            {
+                if (mesh.BoneCount > 0)
+                    foreach (var bone in mesh.Bones)
+                        bone.LinkNodes(nodeMapping);
             }
         }
 

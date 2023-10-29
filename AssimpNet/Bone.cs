@@ -36,6 +36,11 @@ namespace Assimp
         private String m_name;
         private List<VertexWeight> m_weights;
         private Matrix4x4 m_offsetMatrix;
+        private Node m_Armature;
+        private Node m_Node;
+
+        private IntPtr m_ArmaturePtr;
+        private IntPtr m_NodePtr;
 
         /// <summary>
         /// Gets or sets the name of the bone.
@@ -104,6 +109,16 @@ namespace Assimp
             }
         }
 
+        public Node Armature
+        {
+            get => m_Armature;
+        }
+
+        public Node Node
+        {
+            get => m_Node;
+        }
+
         /// <summary>
         /// Constructs a new instance of the <see cref="Bone"/> class.
         /// </summary>
@@ -128,6 +143,15 @@ namespace Assimp
 
             if(weights != null)
                 m_weights.AddRange(weights);
+        }
+
+        internal void LinkNodes(Dictionary<IntPtr, Node> nodeMapping)
+        {
+            if (m_ArmaturePtr != IntPtr.Zero && nodeMapping.TryGetValue(m_ArmaturePtr, out Node node))
+                m_Armature = node;
+
+            if (m_NodePtr != IntPtr.Zero && nodeMapping.TryGetValue(m_NodePtr, out node))
+                m_Node = node;
         }
 
         #region IMarshalable Implementation
@@ -159,13 +183,17 @@ namespace Assimp
         /// Reads the unmanaged data from the native value.
         /// </summary>
         /// <param name="nativeValue">Input native value</param>
-        void IMarshalable<Bone, AiBone>.FromNative(in AiBone nativeValue)
+        void IMarshalable<Bone, AiBone>.FromNative(in AiBone nativeValue, IntPtr nativePointer)
         {
             m_name = AiString.GetString(nativeValue.Name); //Avoid struct copy
             m_offsetMatrix = nativeValue.OffsetMatrix;
+
+            m_ArmaturePtr = nativeValue.Armature;
+            m_NodePtr = nativeValue.Node;
+
             m_weights.Clear();
 
-            if(nativeValue.NumWeights > 0 && nativeValue.Weights != IntPtr.Zero)
+            if (nativeValue.NumWeights > 0 && nativeValue.Weights != IntPtr.Zero)
                 m_weights.AddRange(MemoryHelper.FromNativeArray<VertexWeight>(nativeValue.Weights, (int) nativeValue.NumWeights));
         }
 

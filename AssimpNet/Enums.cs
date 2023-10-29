@@ -300,6 +300,18 @@ namespace Assimp
         FixInFacingNormals = 0x2000,
 
         /// <summary>
+        /// This step will populate the node and armature fields on bones
+        /// </summary>
+        /// <para>
+        /// Reprocess all nodes to calculate bone transforms properly based on the REAL
+        /// mOffsetMatrix not the local.
+        /// Before this would use mesh transforms which is wrong for bone transforms
+        /// Before this would work for simple character skeletons but not complex meshes
+        /// with multiple origins
+        /// </para>
+        PopulateArmatureData = 0x4000,
+
+        /// <summary>
         /// This step splits meshes with more than one primitive type in homogeneous submeshes.
         /// <para>
         /// This step is executed after triangulation and after it returns, just one

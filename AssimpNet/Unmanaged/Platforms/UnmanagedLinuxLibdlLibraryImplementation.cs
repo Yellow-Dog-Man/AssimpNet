@@ -79,16 +79,16 @@ namespace Assimp.Unmanaged
 
         #region Native Methods
 
-        [DllImport("libdl.so")]
+        [DllImport("__Internal")]
         private static extern IntPtr dlopen(String fileName, int flags);
 
-        [DllImport("libdl.so")]
+        [DllImport("__Internal")]
         private static extern IntPtr dlsym(IntPtr handle, String functionName);
 
-        [DllImport("libdl.so")]
+        [DllImport("__Internal")]
         private static extern int dlclose(IntPtr handle);
 
-        [DllImport("libdl.so")]
+        [DllImport("__Internal")]
         private static extern IntPtr dlerror();
 
         private const int RTLD_NOW = 2;

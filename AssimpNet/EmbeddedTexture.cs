@@ -63,6 +63,18 @@ namespace Assimp
             }
         }
 
+		public string OriginalFilename
+		{
+			get
+			{
+				return m_filename;
+			}
+			set
+			{
+				m_filename = value;
+			}
+		}
+
         /// <summary>
         /// Gets if the texture is compressed or not.
         /// </summary>

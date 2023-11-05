@@ -278,6 +278,18 @@ namespace Assimp
             }
         }
 
+		public Vector2D Size
+		{
+			get
+			{
+				return m_areaSize;
+			}
+			set
+			{
+				m_areaSize = value;
+			}
+		}
+
         /// <summary>
         /// Constructs a new instance of the <see cref="Light"/> class.
         /// </summary>

@@ -383,7 +383,7 @@ namespace Assimp.Unmanaged
             [DllImport("api-ms-win-core-libraryloader-l2-1-0.dll", SetLastError = true, EntryPoint = "LoadPackagedLibrary")]
             public static extern IntPtr WinUwpLoadLibrary([MarshalAs(UnmanagedType.LPWStr)] string libraryName, int reserved = 0);
 
-            [DllImport("libdl.so", EntryPoint = "dlerror")]
+            [DllImport("__Internal", EntryPoint = "dlerror")]
             public static extern IntPtr libdl_dlerror();
 
             [DllImport("libc.so.6", EntryPoint = "dlerror")]

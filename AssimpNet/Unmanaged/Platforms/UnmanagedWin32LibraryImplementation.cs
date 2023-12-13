@@ -92,7 +92,7 @@ namespace Assimp.Unmanaged
 
         #region Native Methods
 
-        [DllImport("kernel32.dll", CharSet = CharSet.Ansi, BestFitMapping = false, SetLastError = true, EntryPoint = "LoadLibrary")]
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode, BestFitMapping = false, SetLastError = true, EntryPoint = "LoadLibrary")]
         private static extern IntPtr WinNativeLoadLibrary(String fileName);
 
         [DllImport("kernel32.dll", SetLastError = true)]

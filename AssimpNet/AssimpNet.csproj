@@ -1,5 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
+  <PropertyGroup>
+    <PackageId>YellowDogMan.Assimp</PackageId>
+    <PackageProjectUrl>https://github.com/Yellow-Dog-Man/AssimpNet</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Yellow-Dog-Man/AssimpNet</RepositoryUrl>
+  </PropertyGroup>
   <PropertyGroup>
     <TargetFrameworks>netstandard1.3;net35;net4;</TargetFrameworks>
     <LangVersion>latest</LangVersion>
@@ -8,7 +12,7 @@
     <SignAssembly Condition=" '$(MSBuildRuntimeType)' != 'Core'">true</SignAssembly>
     <AssemblyOriginatorKeyFile Condition=" '$(MSBuildRuntimeType)' != 'Core'">AssimpKey.snk</AssemblyOriginatorKeyFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>Nicholas Woodfield</Authors>
+    <Authors>Nicholas Woodfield, Yellow Dog Man Studios s.r.o.</Authors>
     <Company />
     <Version>5.0.0-beta1</Version>
     <PackageLicenseFile>License.txt</PackageLicenseFile>
@@ -20,7 +24,7 @@
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <Description>A .NET Wrapper for the Open Asset Import (Assimp) library. The library is able to import dozens of different 3D model formats (e.g. OBJ, FBX, GLTF, Collada) and export to several formats (e.g. OBJ, GLTF, Collada). This release targets version 5.0.1 of the native library.</Description>
+    <Description>Fork of A .NET Wrapper for the Open Asset Import (Assimp) library. The library is able to import dozens of different 3D model formats (e.g. OBJ, FBX, GLTF, Collada) and export to several formats (e.g. OBJ, GLTF, Collada). This release targets version 5.0.1 of the native library.</Description>
     <PackageTags>Model 3D Graphics Assimp Mesh Importers Content Assets FBX Collada GLTF OBJ 3DS DXF</PackageTags>
     <RootNamespace>Assimp</RootNamespace>
     <AssemblyName>AssimpNet</AssemblyName>

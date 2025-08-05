@@ -15,7 +15,7 @@ on:
 jobs:
   build:
     # 2019, has our .NET needs, latest does not
-    runs-on: windows-2019
+    runs-on: windows-2022(windows-latest)
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET 7

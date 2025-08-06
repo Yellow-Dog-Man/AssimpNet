@@ -23,7 +23,6 @@
     <RepositoryType>Git</RepositoryType>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedAllSources>true</EmbedAllSources>
     <IncludeContentInPack>true</IncludeContentInPack>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -37,32 +36,10 @@
 
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
     <DocumentationFile>bin\Release\$(TargetFramework)\AssimpNet.xml</DocumentationFile>
-    <DebugType>embedded</DebugType>
+    <DebugType>portable</DebugType>
     <DebugSymbols>true</DebugSymbols>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
-
-  <Target Name="EnsureEmbeddedSymbolsInPackage" BeforeTargets="GetPackageSymbolFiles" Condition="'$(Configuration)'=='Release' AND '$(IncludeSymbols)'=='true'">
-    <Message Text="Configuring symbol package for embedded debug symbols..." Importance="high" />
-    
-    <ItemGroup>
-      <SymbolPackageFile Remove="@(SymbolPackageFile)" Condition="'%(Extension)' == '.pdb'" />
-    </ItemGroup>
-    
-    <ItemGroup>
-      <SymbolPackageFile Include="bin/Release/net35/$(AssemblyName).dll" Condition="Exists('bin/Release/net35/$(AssemblyName).dll')">
-        <TargetPath>lib/net35/$(AssemblyName).dll</TargetPath>
-      </SymbolPackageFile>
-      <SymbolPackageFile Include="bin/Release/net4/$(AssemblyName).dll" Condition="Exists('bin/Release/net4/$(AssemblyName).dll')">
-        <TargetPath>lib/net40/$(AssemblyName).dll</TargetPath>
-      </SymbolPackageFile>
-      <SymbolPackageFile Include="bin/Release/netstandard1.3/$(AssemblyName).dll" Condition="Exists('bin/Release/netstandard1.3/$(AssemblyName).dll')">
-        <TargetPath>lib/netstandard1.3/$(AssemblyName).dll</TargetPath>
-      </SymbolPackageFile>
-    </ItemGroup>
-    
-    <Message Text="Symbol package will contain DLLs with embedded debug symbols and sources" Importance="high" />
-  </Target>
 
   <ItemGroup>
     <Content Include="..\logo.png" Link="nuget\logo.png" PackagePath="" />

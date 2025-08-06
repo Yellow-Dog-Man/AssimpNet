@@ -22,7 +22,7 @@ jobs:
         dotnet-version: 9.0.x
     - name: Build & Pack
       run: |
-        dotnet build AssimpNet -c Release
+        dotnet build AssimpNet -c Release -p:Version=${{ env.VERSION }}
         dotnet pack AssimpNet -c Release -p:Version=${{ env.VERSION }}
     - name: Push to Nuget
       run: dotnet nuget push ./AssimpNet/bin/Release/*.nupkg -k ${{ secrets.NUGET_TOKEN }} -s https://api.nuget.org/v3/index.json

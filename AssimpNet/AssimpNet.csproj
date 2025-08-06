@@ -23,8 +23,11 @@
     <RepositoryType>Git</RepositoryType>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
-    <IncludeSource>true</IncludeSource>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EmbedAllSources>true</EmbedAllSources>
+    <IncludeContentInPack>true</IncludeContentInPack>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IsPackable>true</IsPackable>
     <Description>Fork of A .NET Wrapper for the Open Asset Import (Assimp) library. The library is able to import dozens of different 3D model formats (e.g. OBJ, FBX, GLTF, Collada) and export to several formats (e.g. OBJ, GLTF, Collada). This release targets version 5.0.1 of the native library.</Description>
     <PackageTags>Model 3D Graphics Assimp Mesh Importers Content Assets FBX Collada GLTF OBJ 3DS DXF</PackageTags>
     <RootNamespace>Assimp</RootNamespace>
@@ -34,9 +37,32 @@
 
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
     <DocumentationFile>bin\Release\$(TargetFramework)\AssimpNet.xml</DocumentationFile>
-    <DebugType>portable</DebugType>
+    <DebugType>embedded</DebugType>
     <DebugSymbols>true</DebugSymbols>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
+
+  <Target Name="EnsureEmbeddedSymbolsInPackage" BeforeTargets="GetPackageSymbolFiles" Condition="'$(Configuration)'=='Release' AND '$(IncludeSymbols)'=='true'">
+    <Message Text="Configuring symbol package for embedded debug symbols..." Importance="high" />
+    
+    <ItemGroup>
+      <SymbolPackageFile Remove="@(SymbolPackageFile)" Condition="'%(Extension)' == '.pdb'" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <SymbolPackageFile Include="bin/Release/net35/$(AssemblyName).dll" Condition="Exists('bin/Release/net35/$(AssemblyName).dll')">
+        <TargetPath>lib/net35/$(AssemblyName).dll</TargetPath>
+      </SymbolPackageFile>
+      <SymbolPackageFile Include="bin/Release/net4/$(AssemblyName).dll" Condition="Exists('bin/Release/net4/$(AssemblyName).dll')">
+        <TargetPath>lib/net40/$(AssemblyName).dll</TargetPath>
+      </SymbolPackageFile>
+      <SymbolPackageFile Include="bin/Release/netstandard1.3/$(AssemblyName).dll" Condition="Exists('bin/Release/netstandard1.3/$(AssemblyName).dll')">
+        <TargetPath>lib/netstandard1.3/$(AssemblyName).dll</TargetPath>
+      </SymbolPackageFile>
+    </ItemGroup>
+    
+    <Message Text="Symbol package will contain DLLs with embedded debug symbols and sources" Importance="high" />
+  </Target>
 
   <ItemGroup>
     <Content Include="..\logo.png" Link="nuget\logo.png" PackagePath="" />

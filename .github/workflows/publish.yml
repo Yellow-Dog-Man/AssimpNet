@@ -20,11 +20,9 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0.x
-    - name: Restore dependencies
-      run: dotnet restore AssimpNet
     - name: Build & Pack
       run: |
-        dotnet build AssimpNet -c Release -p:Version=${{ env.VERSION }} --no-restore
-        dotnet pack AssimpNet -c Release -p:Version=${{ env.VERSION }} --no-build
+        dotnet build AssimpNet -c Release -p:Version=${{ env.VERSION }}
+        dotnet pack AssimpNet -c Release -p:Version=${{ env.VERSION }}
     - name: Push to Nuget
       run: dotnet nuget push ./AssimpNet/bin/Release/*.nupkg -k ${{ secrets.NUGET_TOKEN }} -s https://api.nuget.org/v3/index.json

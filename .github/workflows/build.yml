@@ -14,18 +14,17 @@ on:
 
 jobs:
   build:
-    # 2019, has our .NET needs, latest does not
-    runs-on: windows-2022
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
       with:
         lfs: true
     - name: Checkout LFS objects
       run: git lfs checkout
-    - name: Setup .NET 7
-      uses: actions/setup-dotnet@v3
+    - name: Setup .NET 9
+      uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 7.0.x
+        dotnet-version: 9.0.x
     - name: Build
       run: dotnet build AssimpNet --configuration Release
     - name: Upload artifacts

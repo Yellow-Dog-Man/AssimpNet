@@ -1167,13 +1167,13 @@ namespace Assimp.Unmanaged
             #region Import Delegates
 
             [UnmanagedFunctionPointer(CallingConvention.Cdecl), UnmanagedFunctionName(FunctionNames.aiImportFile)]
-            public delegate IntPtr aiImportFile([In, MarshalAs(UnmanagedType.LPStr)] String file, uint flags);
+            public delegate IntPtr aiImportFile([In, MarshalAs(UnmanagedType.LPUTF8Str)] String file, uint flags);
 
             [UnmanagedFunctionPointer(CallingConvention.Cdecl), UnmanagedFunctionName(FunctionNames.aiImportFileEx)]
-            public delegate IntPtr aiImportFileEx([In, MarshalAs(UnmanagedType.LPStr)] String file, uint flags, IntPtr fileIO);
+            public delegate IntPtr aiImportFileEx([In, MarshalAs(UnmanagedType.LPUTF8Str)] String file, uint flags, IntPtr fileIO);
 
             [UnmanagedFunctionPointer(CallingConvention.Cdecl), UnmanagedFunctionName(FunctionNames.aiImportFileExWithProperties)]
-            public delegate IntPtr aiImportFileExWithProperties([In, MarshalAs(UnmanagedType.LPStr)] String file, uint flag, IntPtr fileIO, IntPtr propStore);
+            public delegate IntPtr aiImportFileExWithProperties([In, MarshalAs(UnmanagedType.LPUTF8Str)] String file, uint flag, IntPtr fileIO, IntPtr propStore);
 
             [UnmanagedFunctionPointer(CallingConvention.Cdecl), UnmanagedFunctionName(FunctionNames.aiImportFileFromMemory)]
             public delegate IntPtr aiImportFileFromMemory(byte[] buffer, uint bufferLength, uint flags, [In, MarshalAs(UnmanagedType.LPStr)] String formatHint);

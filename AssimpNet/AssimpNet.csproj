@@ -5,7 +5,7 @@
     <RepositoryUrl>https://github.com/Yellow-Dog-Man/AssimpNet</RepositoryUrl>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.3;net35;net4;</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1;</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>

@@ -337,7 +337,18 @@ namespace Assimp.Unmanaged
                     return "x64";
             }
 #else
-            return UnmanagedLibrary.Is64Bit ? "x64" : "x86";
+            switch (System.Runtime.InteropServices.RuntimeInformation.ProcessArchitecture)
+            {
+                case Architecture.Arm64:
+                    return "arm64";
+                case Architecture.Arm:
+                    return "arm";
+                case Architecture.X86:
+                    return "x86";
+                case Architecture.X64:
+                default:
+                    return "x64";
+            }
 #endif
         }
     }
